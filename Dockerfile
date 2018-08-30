@@ -2,14 +2,13 @@ FROM openshift/base-centos7
 
 MAINTAINER Martin Rumanek <martin@rumanek.cz>
 ENV GRADLE_VERSION=2.12
-ENV TOMCAT_MAJOR 8
-ENV TOMCAT_VERSION 8.0.38
+ENV TOMCAT_MAJOR 9
+ENV TOMCAT_VERSION 9.0.11
 ENV CATALINA_HOME /usr/local/tomcat
 ENV JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 
-# temporary old version of Tomcat (cos https://github.com/ceskaexpedice/kramerius/issues/470)
-#ENV TOMCAT_TGZ_URL https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
-ENV TOMCAT_TGZ_URL https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
+# check https://github.com/ceskaexpedice/kramerius/issues/470
+ENV TOMCAT_TGZ_URL https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 
 ENV JDBC_DRIVER_DOWNLOAD_URL https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar
 ENV LANG en_US.UTF-8
@@ -31,9 +30,9 @@ RUN INSTALL_PKGS="tar zip" && \
 
 RUN  ln -sf /usr/local/gradle-$GRADLE_VERSION/bin/gradle /usr/local/bin/gradle
 
-RUN curl -v -j -k -fsL -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.rpm > /tmp/jdk-8u161-linux-x64.rpm && \
-    rpm -Uvh /tmp/jdk-8u161-linux-x64.rpm && \
-rm /tmp/jdk-8u161-linux-x64.rpm
+RUN curl -v -j -k -fsL -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm > /tmp/jdk-8u181-linux-x64.rpm && \
+    rpm -Uvh /tmp/jdk-8u181-linux-x64.rpm && \
+rm /tmp/jdk-8u181-linux-x64.rpm
 
 WORKDIR $CATALINA_HOME
 

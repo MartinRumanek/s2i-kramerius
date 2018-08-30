@@ -2,6 +2,7 @@ version: "2"
 services:
   krameriusinit:
     image: moravianlibrary/krameriusinit
+    build: krameriusinit
     environment:
       - krameriusHost=http://kramerius:8080/search
     volumes:
@@ -25,7 +26,7 @@ services:
       - driver_fedora_mpt_jdbc_url=jdbc:postgresql://riTriplesPostgres:5432/riTriples
       - driver_fedora_mpt_jdbc_user=fedoraAdmin
       - driver_fedora_mpt_jdbc_password=fedoraAdmin
-      - solrHost=http://solr:8983/solr/kramerius
+      - solrHost=http://solr:8080/solr
       - applicationUrl=http://localhost:8080/search
   krameriusPostgres:
     image: "postgres:9.6"
@@ -58,6 +59,6 @@ services:
       - POSTGRES_PASSWORD=fedoraAdmin
       - POSTGRES_DB=riTriples
   solr:
-    image: moravianlibrary/solr6
+    image: moravianlibrary/solr
 volumes:
   k5init:

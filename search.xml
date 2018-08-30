@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-  <Realm className="org.apache.catalina.realm.JAASRealm" appName="search" roleClassNames="cz.incad.kramerius.security.jaas.K4RolePrincipal" debug="99"/>
+  <Realm className="org.apache.catalina.realm.JAASRealm" appName="search" roleClassNames="cz.incad.kramerius.security.jaas.K4RolePrincipal" userClassNames="cz.incad.kramerius.security.jaas.K4User" />
   <Resource name="jdbc/kramerius4" 
             auth="Container" 
             type="javax.sql.DataSource" 
